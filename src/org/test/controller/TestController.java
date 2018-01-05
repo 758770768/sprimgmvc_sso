@@ -136,4 +136,14 @@ public class TestController {
 		return "a";
 	}
 
+	/**
+	 * springcache.3²âÊÔ»º´æÉ¾³ı
+	 */
+	@RequestMapping("/springcacheDelete")
+	public String fn4(String id) {
+		a.deleteCacheById(id);
+		System.out.println("springcacheÇå³ı:" + id);
+		return "a";
+	}
+
 }

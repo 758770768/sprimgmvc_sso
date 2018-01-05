@@ -18,6 +18,9 @@
 	<!-- 测试自定义转换器 String2PersonConverter -->
 	<%-- <jsp:forward
 		page="string2PersonConverter?person=enna/female/2017-12-11"></jsp:forward> --%>
+		<%-- <!-- springcache.4测试缓存请求  -->
+	<jsp:forward page="springcache"></jsp:forward> --%>
+	
 	<span style="color: red">${param.result} <img alt="点击" src="" />
 	</span>
 	<form action="multipartResolver" method="post"

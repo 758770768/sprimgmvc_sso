@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
+import org.test.cache.A;
 import org.test.converter.StringToPerson;
 import org.test.pojo.Person;
 import org.test.pojo.User;
@@ -41,6 +43,9 @@ public class TestController {
 	public User getUser() {
 		return new User();
 	}
+
+	@Resource
+	private A a;
 
 	@RequestMapping("/test{name}/{id}")
 	// cookieøÁ”Ú«Î«Û
@@ -119,6 +124,16 @@ public class TestController {
 		map.put("result", "successful" + file.getName());
 		map.put("path", file.getName());
 		return "redirect:/index.jsp";
+	}
+
+	/**
+	 * springcache.3≤‚ ‘ª∫¥Ê
+	 */
+	@RequestMapping("/springcache")
+	public String fn3(String id) {
+		String i = a.fn(id);
+		System.out.println("springcache:" + i);
+		return "a";
 	}
 
 }

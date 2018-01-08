@@ -3,12 +3,19 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
 	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+		http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.1.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
 		http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-4.2.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+	<!-- spring配置文件扫描 -->
+	<context:property-placeholder location="classpath:org/test/conf/*.properties" />
+	<context:annotation-config />
+	<context:component-scan base-package="org.test"></context:component-scan>
 
 	<!-- springcache.2配置 -->
 	<cache:annotation-driven cache-manager="cacheManager" />
@@ -23,9 +30,7 @@
 			</set>
 		</property>
 	</bean>
-	<context:property-placeholder location="classpath:org/test/conf/*.properties" />
-	<context:annotation-config />
-	<context:component-scan base-package="org.test"></context:component-scan>
+
 	<!-- springmvc注册两大组件 -->
 	<mvc:annotation-driven conversion-service="conversionService" />
 
@@ -89,5 +94,14 @@
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="defaultEncoding" value="UTF-8"></property>
 	</bean>
+
+	<!-- websocket配置 -->
+	<websocket:handlers>
+		<websocket:mapping handler="myFirstHandler" path="/websocket" />
+		<websocket:handshake-interceptors>
+			<bean class="org.test.websocket.MyFirstHandShakeInterceptor"></bean>
+		</websocket:handshake-interceptors>
+	</websocket:handlers>
+
 
 </beans>

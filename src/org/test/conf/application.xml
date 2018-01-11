@@ -94,8 +94,7 @@
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="defaultEncoding" value="UTF-8"></property>
 	</bean>
-
-	<!-- websocket配置 -->
+	<!-- websocket 配置 -->
 	<websocket:handlers>
 		<websocket:mapping handler="myFirstHandler" path="/websocket" />
 		<websocket:handshake-interceptors>

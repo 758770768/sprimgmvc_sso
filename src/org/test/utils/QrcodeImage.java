@@ -16,7 +16,7 @@ public class QrcodeImage {
 	/**
 	 * 生成二维码图片
 	 * 
-	 * @author 陈奎
+	 * @author oliver
 	 * @param content
 	 *            二维码内容
 	 * @param imgPath

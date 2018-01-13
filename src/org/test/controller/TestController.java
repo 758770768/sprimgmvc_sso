@@ -29,9 +29,10 @@ import org.test.pojo.Person3;
 import org.test.pojo.User;
 
 @Controller
-@SessionAttributes("user")
+@SessionAttributes("user") // 标注会话属性
 public class TestController {
 
+	// 从配置文件取值
 	@Value("${age}")
 	private String age;
 	@Value("100")
@@ -40,14 +41,17 @@ public class TestController {
 	@Value("${height}")
 	private Integer height;
 
+/*	// 配置sessionAttribute使用
 	@ModelAttribute("user")
 	public User getUser() {
 		return new User();
-	}
+	}*/
 
+	// 动态注入
 	@Resource
 	private A a;
 
+	// 请求映射
 	@RequestMapping("/test{name}/{id}")
 	// cookie
 	public String test(@PathVariable("name") String name, @PathVariable("id") String id, HttpServletResponse response) {
@@ -61,6 +65,9 @@ public class TestController {
 
 	}
 
+	/**
+	 * oliver 2018年1月13日 springmvc_sso 返回json
+	 */
 	@RequestMapping("/jsonDemo")
 	@ResponseBody
 	public User fun2(User user) {
@@ -68,15 +75,18 @@ public class TestController {
 		return user;
 	}
 
+	/**
+	 * oliver 2018年1月13日 springmvc_sso 错误映射
+	 */
 	@RequestMapping("/errorDemo")
 	public void fun3() {
 		int i = 3 / 0;
 	}
 
-	@RequestMapping("/modelAttribute")
+	/*@RequestMapping("/modelAttribute")
 	public String fun4(@ModelAttribute("user") User user) {
 		return "a";
-	}
+	}*/
 
 	@RequestMapping("/sessionTest")
 	public String fun5() {
@@ -85,6 +95,7 @@ public class TestController {
 
 	/**
 	 * @param binder
+	 * 
 	 *            StringToPerson.3.
 	 */
 	/*
@@ -190,6 +201,15 @@ public class TestController {
 		System.out.println(person);
 		return person;
 
+	}
+
+	/**
+	 * aop测试
+	 */
+	@RequestMapping("/aopTest")
+	public String fn6() {
+		System.out.println("thank you very much");
+		return "aop";
 	}
 
 }

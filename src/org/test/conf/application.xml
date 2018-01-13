@@ -102,5 +102,7 @@
 		</websocket:handshake-interceptors>
 	</websocket:handlers>
 
+	<!-- 开启aop动态代理 -->
+	<aop:aspectj-autoproxy />
 
 </beans>
